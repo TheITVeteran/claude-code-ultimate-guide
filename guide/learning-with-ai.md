@@ -150,6 +150,8 @@ The pattern: **AI excels at well-defined, repeatable tasks**. It struggles with 
 
 The difference isn't the tool — it's the organizational discipline around it.
 
+**On maintainability fear**: The concern that AI-generated code creates unmaintainable codebases is not empirically supported — downstream developers show no significant difference in evolution time or code quality (Borg et al., 2025, n=151). The real risks are skill atrophy and over-delegation, not inherent quality degradation for the next developer. ([arXiv:2507.00788](https://arxiv.org/abs/2507.00788))
+
 ### Implications for Learning
 
 This research shapes the rest of this guide:
@@ -923,6 +925,7 @@ Sources for [§3 The Reality of AI Productivity](#the-reality-of-ai-productivity
 - **Stack Overflow 2024: AI Sentiment** — [stackoverflow.co](https://stackoverflow.co/labs/developer-sentiment-ai-ml/) — Developer attitudes toward AI tools, productivity perceptions
 - **Uplevel Engineering Intelligence (2024)** — Burnout and productivity metrics with AI coding tools
 - **METR Experienced Developer RCT (2025)** — [arXiv:2507.09089](https://arxiv.org/abs/2507.09089) — Randomized controlled trial (16 experienced devs, 246 issues, repos 1M+ lines): AI tools made developers 19% slower on familiar codebases, despite perceiving themselves 20% faster (39-point perception gap). Strongest evidence for skill atrophy risk in experienced developers.
+- **Borg et al. "Echoes of AI" RCT (2025)** — [arXiv:2507.00788](https://arxiv.org/abs/2507.00788) — 2-phase blind RCT (151 participants, 95% professional developers): AI users 30.7% faster (median), habitual users ~55.9% faster. Phase 2: downstream developers evolving AI-generated code showed no significant difference in evolution time or code quality vs. human-generated code. First RCT to explicitly target maintainability of AI-assisted code. Co-authored by Dave Farley ("Continuous Delivery"). Note: arXiv preprint (v2 Dec 2025), not yet published in peer-reviewed proceedings.
 - **DORA/Google DevOps Research (2024)** — AI tool adoption impact on team performance
 
 ### Practitioner Perspectives

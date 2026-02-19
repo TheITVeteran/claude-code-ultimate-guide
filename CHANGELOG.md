@@ -12,6 +12,26 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
   - v2.1.47: VS Code plan preview auto-updates, `ctrl+f` kills all background agents, `last_assistant_message` hook field, 70+ bug fixes
   - v2.1.46: claude.ai MCP connectors support, orphaned process fix on macOS
 
+## [3.27.7] - 2026-02-19
+
+### Added
+
+- **Resource evaluation**: Borg et al. "Echoes of AI" RCT (arXiv:2507.00788)
+  - 2-phase blind controlled experiment, 151 participants (95% professional developers)
+  - AI users 30.7% faster (median), habitual users ~55.9% faster
+  - No significant maintainability impact for downstream developers — first RCT to explicitly target this question
+  - Fact-checked against primary source; v2 (Dec 2025) confirmed via Perplexity
+  - Co-authored by Dave Farley ("Continuous Delivery")
+  - Evaluation file: `docs/resource-evaluations/2026-02-19-echoes-of-ai-maintainability-study.md`
+
+### Changed
+
+- `guide/learning-with-ai.md`: Added Borg et al. 2025 RCT citation in Productivity Research bibliography (revised to factual/neutral wording after technical-writer audit)
+- `guide/learning-with-ai.md`: Added "On maintainability fear" note in "Why Some Teams Get Results" section — the real risks are skill atrophy and over-delegation, not downstream quality degradation
+- `guide/ultimate-guide.md`: Added downstream maintainability nuance blockquote in §1.7 Trust Calibration — defect rates ≠ maintenance burden (Borg et al. 2025 blind RCT)
+- `machine-readable/reference.yaml`: Added 4 entries — `productivity_rct_metr`, `productivity_rct_echoes`, `productivity_maintainability_empirical`, `trust_calibration_maintainability_nuance`
+- Landing `faq/index.astro`: Updated "How much should I trust AI-generated code?" — added maintainability nuance (HTML visible answer + JSON-LD structured data)
+
 ## [3.27.6] - 2026-02-18
 
 ### Added

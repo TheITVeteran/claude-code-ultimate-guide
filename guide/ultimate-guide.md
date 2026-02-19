@@ -1091,6 +1091,8 @@ Research consistently shows AI code has higher defect rates than human-written c
 
 **Key insight**: AI produces code faster but verification becomes the bottleneck. The question isn't "does it work?" but "how do I know it works?"
 
+> **Nuance on downstream maintainability**: A 2-phase blind RCT (Borg et al., 2025, n=151 professional developers) found no significant difference in the time needed for downstream developers to evolve AI-generated vs. human-generated code. The defect rates above are real — but they do not systematically translate into higher maintenance burden for the next developer. The risk is more narrowly scoped than commonly assumed. ([arXiv:2507.00788](https://arxiv.org/abs/2507.00788))
+
 ### The Verification Spectrum
 
 Not all code needs the same scrutiny. Match verification effort to risk:

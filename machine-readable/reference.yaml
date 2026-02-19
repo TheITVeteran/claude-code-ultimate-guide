@@ -91,6 +91,11 @@ deep_dive:
   learning_embracing_ai: "guide/learning-with-ai.md:518"
   learning_30day_plan: "guide/learning-with-ai.md:710"
   learning_red_flags: "guide/learning-with-ai.md:770"
+  # Productivity Research RCTs
+  productivity_rct_metr: "guide/learning-with-ai.md:925"  # METR 2025: experienced devs 19% slower on large codebases despite perceiving 20% faster
+  productivity_rct_echoes: "guide/learning-with-ai.md:926"  # Borg 2025: 30.7% faster (median), ~55.9% habitual users, no maintainability impact downstream
+  productivity_maintainability_empirical: "guide/learning-with-ai.md:926"  # Empirical data on "AI code is unmaintainable" claim — blind RCT shows no significant difference
+  trust_calibration_maintainability_nuance: "guide/ultimate-guide.md:1092"  # Nuance: defect rates ≠ maintenance burden (Borg et al. 2025)
   learning_mode_template: "examples/claude-md/learning-mode.md"
   learn_quiz_command: "examples/commands/learn/quiz.md"
   learn_teach_command: "examples/commands/learn/teach.md"

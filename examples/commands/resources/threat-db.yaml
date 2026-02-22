@@ -2,8 +2,8 @@
 # For use with /security-check and /security-audit commands
 # Manually maintained — update after new security advisories
 
-version: "2.1.0"
-updated: "2026-02-17"
+version: "2.2.0"
+updated: "2026-02-22"
 sources:
   - name: "Snyk ToxicSkills"
     url: "https://snyk.io/blog/toxicskills-malicious-ai-agent-skills-clawhub/"
@@ -65,6 +65,18 @@ sources:
   - name: "OWASP Top 10 for Agentic AI Security Risks 2026"
     url: "https://www.startupdefense.io/blog/owasp-top-10-agentic-ai-security-risks-2026"
     date: "2026-02-16"
+  - name: "Lakera - The Agent Skill Ecosystem: When AI Extensions Become a Malware Delivery Channel"
+    url: "https://www.lakera.ai/blog/the-agent-skill-ecosystem-when-ai-extensions-become-a-malware-delivery-channel"
+    date: "2026-02-20"
+  - name: "Penligent AI - CVE-2026-0755 gemini-mcp-tool Command Injection"
+    url: "https://www.penligent.ai/hackinglabs/de/deep-analysis-of-gemini-mcp-tool-command-injection-cve-2026-0755-when-an-mcp-toolchain-hands-user-input-to-the-shell/"
+    date: "2026-02-07"
+  - name: "Snyk - SSRF in mcp-run-python (SNYK-PYTHON-MCPRUNPYTHON-15250607)"
+    url: "https://security.snyk.io/vuln/SNYK-PYTHON-MCPRUNPYTHON-15250607"
+    date: "2026-02-09"
+  - name: "The Hacker News - Anthropic Launches Claude Code Security"
+    url: "https://thehackernews.com/2026/02/anthropic-launches-claude-code-security.html"
+    date: "2026-02-21"
 
 # ═══════════════════════════════════════════════════════════════
 # MALICIOUS AUTHORS (confirmed by security researchers)
@@ -712,6 +724,25 @@ cve_database:
     fixed_in: "after commit f3419f00117aa9949e326f78cc940166c88f18cb"
     mitigation: "Update to latest commit post-f3419f00; avoid passing user-controlled input to exec(); switch to execFile() with argument arrays"
 
+  # --- gemini-mcp-tool ---
+  - id: "CVE-2026-0755"
+    component: "gemini-mcp-tool"
+    severity: "critical"
+    cvss: 9.8
+    description: "Command injection via LLM-generated arguments passed directly to shell execution primitives without validation; network-reachable RCE via JSON-RPC CallTool requests requiring no authentication and no user interaction"
+    source: "Penligent AI"
+    fixed_in: "no fix confirmed at time of research (2026-02-22)"
+    mitigation: "Replace shell string execution with execFile() and argument arrays; validate all LLM-generated arguments before passing to any exec primitive; do not expose gemini-mcp-tool to untrusted networks"
+
+  # --- mcp-run-python ---
+  - id: "SNYK-PYTHON-MCPRUNPYTHON-15250607"
+    component: "mcp-run-python"
+    severity: "high"
+    description: "SSRF via overly permissive Deno sandbox configuration — sandbox allows localhost interface access, enabling attackers to reach internal network resources through crafted Python code execution requests"
+    source: "Snyk (2026-02-09)"
+    fixed_in: "unknown — check upstream for patch"
+    mitigation: "Restrict Deno sandbox network permissions to block localhost/internal ranges; do not expose mcp-run-python to untrusted inputs or external networks"
+
   # --- MCP Salesforce Connector ---
   - id: "CVE-2026-25650"
     component: "MCP Salesforce Connector"
@@ -1117,6 +1148,16 @@ attack_techniques:
     source: "Aikido Security (2026-01-21)"
     mitigation: "Verify every package reference in SKILL.md before executing setup instructions; use package lockfiles; pin all dependencies to known-good checksums"
 
+  - id: "T010"
+    name: "Agent-to-Agent Communication Injection"
+    description: "Attacker injects malicious instructions into communication channels (Slack, email, ticketing systems, code review comments) that AI agents monitor autonomously; agent executes unauthorized actions without cryptographic source verification"
+    examples:
+      - "Posting fake urgent security alerts in Slack channels monitored by DevOps AI agents causing unauthorized deployments"
+      - "Embedding malicious instructions in GitHub issue comments that redirect CI/CD agents to commit backdoored code"
+      - "Crafting PR review comments that cause coding agents to weaken security controls under the guise of refactoring"
+    source: "Pillar Security / Cisco AI Security Research (2026)"
+    mitigation: "Validate agent instruction sources cryptographically; treat all external channel content as untrusted user input; require human-in-the-loop for high-impact actions triggered via monitored channels; scope agent permissions to minimum required for task"
+
 # ═══════════════════════════════════════════════════════════════
 # SCANNING TOOLS
 # ═══════════════════════════════════════════════════════════════
@@ -1215,6 +1256,71 @@ scanning_tools:
       - "Newer/community tool — smaller detection database than mcp-scan"
       - "Less coverage of skills.sh / ClawHub skill scanning"
 
+  - name: "Proximity"
+    vendor: "community (open-source)"
+    type: "cli"
+    url: "https://www.helpnetsecurity.com/2025/10/29/proximity-open-source-mcp-security-scanner/"
+    capabilities:
+      - "Open-source MCP security scanner"
+      - "Identifies prompts, tools, and resources exposed by MCP servers"
+      - "Evaluates security risks via NOVA rule engine"
+      - "Detects prompt injection and jailbreak attempts in tool descriptions"
+    limitations:
+      - "Early-stage open-source project — smaller detection database than commercial tools"
+      - "Does not scan SKILL.md or agent config files"
+
+  - name: "Enkrypt AI MCP Scanner"
+    vendor: "Enkrypt AI"
+    type: "cloud-saas"
+    url: "https://www.enkryptai.com/mcp-scan"
+    capabilities:
+      - "Agentic static analysis for MCP servers"
+      - "Detects command injection, path traversal, prompt injection, code injection"
+      - "Identifies LLM-driven exploits and authorization gaps between docs and code"
+      - "Protocol-level vulnerability detection for MCP JSON-RPC implementation"
+    limitations:
+      - "Commercial/SaaS — not open-source"
+      - "Does not scan SKILL.md or ClawHub skills directly"
+
+  - name: "Cisco MCP Scanner"
+    vendor: "Cisco"
+    type: "cli"
+    url: "https://blogs.cisco.com/ai/ciscos-mcp-scanner-introduces-behavioral-code-threat-analysis"
+    capabilities:
+      - "Interprocedural dataflow analysis across MCP server functions"
+      - "Behavioral code threat analysis — compares documented intent vs actual behavior"
+      - "Detects hidden operations (undocumented network calls, file operations)"
+      - "Supports black-box (YARA/API scanning) and white-box (source code) analysis"
+      - "LLM-powered semantic analysis for intent vs behavior mismatch"
+    limitations:
+      - "Cisco-maintained — may require Cisco toolchain integration"
+      - "Does not scan skills.sh / ClawHub ecosystem"
+
+  - name: "NeuralTrust MCP Scanner"
+    vendor: "NeuralTrust"
+    type: "cloud-saas"
+    url: "https://neuraltrust.ai/mcp-scanner"
+    capabilities:
+      - "Detects poisoned or redefined tools and unsafe endpoint exposures"
+      - "Analyzes dependencies and integration risks"
+      - "Policy validation for MCP manifests"
+      - "Compliance mapping to OWASP, MITRE, and CWE frameworks"
+    limitations:
+      - "Commercial/SaaS platform"
+
+  - name: "MCPScan.ai"
+    vendor: "mcpscan.ai"
+    type: "cloud-saas"
+    url: "https://mcpscan.ai"
+    capabilities:
+      - "Cloud platform with specialized LLM classifiers for poisoning detection"
+      - "Advanced Tool Metadata Scanner for MCP servers"
+      - "Detects shell command patterns, code injection, resource exhaustion risks"
+      - "Private scanning options for enterprise users"
+    limitations:
+      - "Cloud-based — requires sending server metadata to external platform"
+      - "Not open-source"
+
   - name: "Mend SAST MCP"
     vendor: "Mend.io"
     type: "mcp-server"
@@ -1267,3 +1373,8 @@ defensive_resources:
     url: "https://www.startupdefense.io/blog/owasp-top-10-agentic-ai-security-risks-2026"
     type: "framework"
     description: "Community-maintained OWASP-style Top 10 listing for agentic AI systems; covers Agent Goal Hijacking (#1), Supply Chain compromise, Tool Poisoning, Prompt Injection, Memory Poisoning, and more. Updated 2026-02-16."
+
+  - name: "Anthropic Claude Code Security"
+    url: "https://thehackernews.com/2026/02/anthropic-launches-claude-code-security.html"
+    type: "tool"
+    description: "Anthropic's AI-powered codebase security scanner with human-reviewed patch suggestions; launched 2026-02-21. Scans for vulnerabilities using Claude as the analysis engine with human oversight before applying fixes."

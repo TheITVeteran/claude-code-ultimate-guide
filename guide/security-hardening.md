@@ -63,10 +63,14 @@ This attack exploits the one-time approval model: once you approve an MCP, updat
 | **CVE-2026-24052** | High | SSRF via domain validation bypass in WebFetch | Update to v1.0.111+ |
 | **CVE-2025-66032** | High | 8 command execution bypasses via blocklist flaws | Update to v1.0.93+ |
 | **ADVISORY-CC-2026-001** | High | Sandbox bypass — commands excluded from sandboxing bypass Bash permissions (no CVE assigned) | **Update to v2.1.34+ immediately** |
+| **CVE-2026-0755** | **Critical (9.8)** | RCE in gemini-mcp-tool — LLM-generated args passed to shell without validation; no auth, network-reachable | **No fix yet** — avoid using in production or on exposed networks |
+| **SNYK-PYTHON-MCPRUNPYTHON-15250607** | High | SSRF in mcp-run-python — Deno sandbox permits localhost access, enabling internal network pivoting | Restrict sandbox network permissions; block localhost range |
 
 **v2.1.34 Security Fix (Feb 2026)**: Claude Code v2.1.34 patched a sandbox bypass vulnerability where commands excluded from sandboxing could bypass Bash permission enforcement. **Upgrade immediately** if running v2.1.33 or earlier. Note: this is separate from CVE-2026-25725 (a different sandbox escape fixed later).
 
-**Source**: [Cymulate EscapeRoute](https://cymulate.com/blog/cve-2025-53109-53110-escaperoute-anthropic/), [Checkpoint MCPoison](https://research.checkpoint.com/2025/cursor-vulnerability-mcpoison/), [Cato CurXecute](https://www.catonetworks.com/blog/curxecute-rce/), [SentinelOne CVE-2026-24052](https://www.sentinelone.com/vulnerability-database/cve-2026-24052/), [Flatt Security](https://flatt.tech/research/posts/pwning-claude-code-in-8-different-ways/), Claude Code CHANGELOG
+**⚠️ CVE-2026-0755 (Feb 2026 — No Patch)**: Critical RCE in `gemini-mcp-tool` (CVSS 9.8). An attacker can send crafted JSON-RPC `CallTool` requests with malicious arguments that execute arbitrary code on the host machine with full service account privileges. No fix confirmed as of 2026-02-22. Do not expose gemini-mcp-tool to untrusted networks.
+
+**Source**: [Cymulate EscapeRoute](https://cymulate.com/blog/cve-2025-53109-53110-escaperoute-anthropic/), [Checkpoint MCPoison](https://research.checkpoint.com/2025/cursor-vulnerability-mcpoison/), [Cato CurXecute](https://www.catonetworks.com/blog/curxecute-rce/), [SentinelOne CVE-2026-24052](https://www.sentinelone.com/vulnerability-database/cve-2026-24052/), [Flatt Security](https://flatt.tech/research/posts/pwning-claude-code-in-8-different-ways/), [Penligent AI CVE-2026-0755](https://www.penligent.ai/hackinglabs/de/deep-analysis-of-gemini-mcp-tool-command-injection-cve-2026-0755-when-an-mcp-toolchain-hands-user-input-to-the-shell/), Claude Code CHANGELOG
 
 #### Attack Patterns
 

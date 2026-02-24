@@ -6,7 +6,41 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+### Documentation
+
+- **Claude Code Releases**: Updated tracking to v2.1.52
+  - v2.1.51: `claude remote-control` subcommand, BashTool login shell perf, SDK account env vars, /model human-readable labels
+  - v2.1.52: VSCode crash fix on Windows
+
 ### Added
+
+- **guide/ultimate-guide.md §9.21** — Nouvelle section "Legacy Codebase Modernization" (workflow 4 étapes validé par recherche indépendante)
+  - Déclencheur : article Anthropic COBOL (23 fév 2026) + chute IBM -13% même jour (pire journée depuis oct. 2000)
+  - Workflow : Discovery → Risk Analysis → Strategic Planning → Incremental Implementation
+  - Prompt patterns concrets pour chaque phase, tableau expectations réalistes (-25% à -88% selon contexte)
+  - Stats vérifiées via Perplexity : 220B lignes COBOL (IBM), ~95% ATM (Reuters/industrie), 93% accuracy COBOL→Java (arXiv avr. 2025)
+  - Anti-patterns documentés : big bang migration, no parallel run, skip discovery, trust aveugle sur business logic
+  - Sources : arXiv 2504.11335, AWS EKS case study (juil. 2025), WJAETS 2025, cas Airbnb (6 sem. vs 1.5 an)
+  - Évaluation ressource : score 2/5 maintenu (article marketing sans depth technique) — workflow intégré via recherche indépendante
+
+- **docs/resource-evaluations/2026-02-23-agentsview-session-analytics.md** — Évaluation AgentsView (score 3/5, à intégrer dans 2-4 semaines)
+  - Web app locale (Go + Svelte 5 + SQLite FTS5) pour search + analytics des sessions Claude Code, Codex, Gemini CLI
+  - Gap confirmé : aucun outil existant dans le guide ne combine FTS + analytics visuelles (heatmaps, velocity) dans une UI web locale
+  - Freins : repo de 4 jours (créé 19 fév 2026), 49 stars au moment de l'évaluation
+  - Crédibilité auteur : Wes McKinney (créateur de pandas)
+  - Plan d'intégration : `guide/observability.md` section External Monitoring Tools + mention dans `guide/third-party-tools.md`
+  - Score initial 4/5 → challengé à 3/5 (adoption non établie) + placement corrigé vers `observability.md`
+
+- **guide/ultimate-guide.md §5.5** — Nouvelle entrée "Design Intelligence: UI UX Pro Max" dans Community Skill Repositories
+  - Skill design le plus populaire de l'écosystème (33.7k stars, 3.3k forks, MIT, v2.2.1)
+  - Couvre : 67 styles UI, 96 palettes, 57 typographies, 99 UX guidelines, 100 règles industrie
+  - Documentation du Design System Generator (BM25 engine Python, offline) avec commandes exactes
+  - Pattern Master + Override pour projets multi-pages documenté avec workflow end-to-end
+  - 3 options d'installation (Claude Marketplace, CLI `uipro-cli`, git clone manuel)
+  - Note sécurité mise à jour post-audit source (fév 2026) : aucun script preinstall/postinstall npm, engine Python 100% offline (stdlib + CSV/JSON locaux, zéro appel réseau)
+  - Évaluation : `docs/resource-evaluations/ui-ux-pro-max-skill.md` (score 4/5, traction vérifiée gh CLI, audit source propre)
+
+- **machine-readable/reference.yaml** — Entrée `ui_ux_pro_max` avec URL, line number, stats
 
 - **guide/ultimate-guide.md** — 7 sections ajoutées suite à veille hebdo Anthropic 17-23 fev 2026 (éval: `docs/resource-evaluations/2026-02-22-veille-hebdo-anthropic-17-23-fev.md`, score 3/5)
 

@@ -3,8 +3,8 @@
 # Purpose: Track Claude Code product releases for documentation sync
 # Maintained: Manual updates when new releases are announced
 
-latest: "2.1.50"
-updated: "2026-02-21"
+latest: "2.1.52"
+updated: "2026-02-24"
 
 # ════════════════════════════════════════════════════════════════
 # RELEASES (newest first, condensed highlights only)
@@ -14,6 +14,21 @@ releases:
   # ─────────────────────────────────────────────────────────────
   # 2.1.x Series (January-February 2026)
   # ─────────────────────────────────────────────────────────────
+
+  - version: "2.1.52"
+    date: "2026-02-24"
+    highlights:
+      - "VSCode: Fixed extension crash on Windows ('command claude-vscode.editor.openLast not found')"
+    breaking: []
+
+  - version: "2.1.51"
+    date: "2026-02-24"
+    highlights:
+      - "⭐ `claude remote-control` subcommand for external builds enabling local environment serving"
+      - "BashTool skips login shell by default when shell snapshot available (was `CLAUDE_BASH_NO_LOGIN=true`); tool results persist to disk at 50K chars (was 100K)"
+      - "SDK: `CLAUDE_CODE_ACCOUNT_UUID`, `CLAUDE_CODE_USER_EMAIL`, `CLAUDE_CODE_ORGANIZATION_UUID` env vars for account metadata"
+      - "/model picker shows human-readable labels (e.g., 'Sonnet 4.5') for pinned versions; custom npm registries for plugin installs"
+    breaking: []
 
   - version: "2.1.50"
     date: "2026-02-21"

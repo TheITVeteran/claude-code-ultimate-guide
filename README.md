@@ -559,15 +559,15 @@ A series of 11 focused whitepapers covering Claude Code in depth. Each covers a 
 - **09** — *Apprendre avec l'IA / Learning with AI* — UVAL protocol, comprehension debt, 30-day plan
 - **10** — *Budget IA / AI Budget* — Token costs, model selection, cost optimization
 
-## 🗂️ Recap Cards (FR)
+## 🗂️ Recap Cards (FR + EN)
 
 57 single-page A4 reference cards — printable, one concept per card. Organized in 3 series:
 
-> **Coming soon** — currently in private access. Public release planned alongside the whitepapers.
+> **Coming soon** — currently in private access. Public release planned alongside the whitepapers. Available in French and English.
 
 - **Technique (22 cards)** — Commands, permissions, configuration, MCP, models, context window
-- **Méthodologie (22 cards)** — Daily workflow, agents, hooks, CI/CD, multi-agent, debug
-- **Conception (13 cards)** — Mental models, prompting, security by design, cost patterns
+- **Méthodologie / Methodology (22 cards)** — Daily workflow, agents, hooks, CI/CD, multi-agent, debug
+- **Conception / Design (13 cards)** — Mental models, prompting, security by design, cost patterns
 
 ---
 

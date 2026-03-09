@@ -500,7 +500,7 @@ Note: 76% of candidates claiming AI expertise lack production-level deployment e
 
 ## 15. Salary Benchmarks (2025-2026)
 
-These are US market figures. Expect 30-50% lower in Europe, 40-60% lower in other markets.
+> **Indicative only — large variance applies.** These figures are US market base salaries (2025-2026). Europe runs 30-50% lower, other markets 40-60% lower. Total compensation (equity, bonus, RSUs) can significantly exceed base, especially at startups and FAANG. Experience level, location within a country, company stage, and negotiation all create wide variance. Use these as orientation, not negotiation anchors.
 
 | Role | Entry | Mid | Senior | Notes |
 |------|-------|-----|--------|-------|

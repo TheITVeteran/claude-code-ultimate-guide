@@ -83,6 +83,14 @@ Eliminates merge conflicts on `CHANGELOG.md`, captures context at implementation
 - Conditional suggestion pattern: "if PR-intent without fragment-mention"
 - CI enforcement with independent migration check job
 
+### [RPI: Research → Plan → Implement](./rpi.md) ⭐ NEW
+
+**3-phase feature development with explicit validation gates between phases**
+
+Build features in three locked phases: Research feasibility first, plan the implementation second, write code third. Each phase produces a concrete artifact (RESEARCH.md → PLAN.md → code). Each gate requires an explicit GO before the next phase starts.
+
+**When to use**: Features with unclear feasibility, more than a day of work, unknown technical territory, or anywhere discovering a wrong assumption late is costly
+
 ### [Cognitive Mode Switching](./gstack-workflow.md) ⭐ NEW
 
 Switch between specialist roles across your ship cycle: strategic product gate, architecture review, paranoid code review, automated release, native browser QA, and retrospective.
@@ -190,6 +198,7 @@ Multi-session task tracking with TodoWrite, tasks API, and context persistence a
 | **New project from template** | [Skeleton Projects](./skeleton-projects.md) |
 | **Team AI instructions** | [Team AI Instructions](./team-ai-instructions.md) |
 | **Enforce mandatory workflow steps** | [Changelog Fragments](./changelog-fragments.md) |
+| **Unknown feasibility, multi-day feature** | [RPI: Research → Plan → Implement](./rpi.md) |
 | **Documentation** | [PDF Generation](./pdf-generation.md) |
 | **Social previews** | [OG Image Generation](./og-image-generation.md) |
 | **Conference talk from raw material** | [Talk Preparation Pipeline](./talk-pipeline.md) |

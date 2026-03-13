@@ -234,6 +234,61 @@ Key quote:
 
 ---
 
+## 🔄 LLM Day-to-Day Performance Variance
+
+**Type**: Expected behavior (not a bug)
+**Severity**: 🟡 **LOW - AWARENESS**
+**Status**: Inherent to LLM inference, not specific to any version
+
+### What This Is
+
+Claude's output quality can vary noticeably from session to session, even with identical prompts and a clean context window. This is distinct from context window degradation (which happens within a session as context fills up). This is about variance between fresh sessions.
+
+Users sometimes report shorter responses, more conservative suggestions, or unexpected refusals on tasks that worked fine the day before. This can feel like a model downgrade, but it is not.
+
+### Root Causes
+
+**Probabilistic inference**: Temperature above 0 means every inference run is non-deterministic. Two runs of the same prompt will produce different token sequences. This is fundamental to how language models work.
+
+**MoE routing variance**: Claude uses a Mixture of Experts architecture. On each forward pass, a routing mechanism selects which expert weights to activate. Different runs activate different combinations, producing different outputs even for semantically identical inputs.
+
+**Infrastructure variance**: In production, requests hit different servers with different load levels, hardware generations, and thermal states. These factors influence numerical precision in floating-point arithmetic during inference, creating subtle but real output differences.
+
+**Context sensitivity**: Even with `/clear`, tiny differences between sessions accumulate. The system prompt, tool list, and session initialization all slightly affect the model's first outputs.
+
+### Observable Signals
+
+| Signal | What You See | What It Means |
+|--------|-------------|---------------|
+| Response length | Shorter, less detailed than usual | Routing hit a more conservative path |
+| Refusals | Edge cases that normally work get refused | Different safety calibration on this run |
+| Code style | More verbose or more minimal than expected | Expert mix activated differently |
+| Creativity | More conservative, less inventive suggestions | Not a capability loss, a sampling outcome |
+| Verbosity | More caveats and disclaimers than usual | Normal variance in token probabilities |
+
+### What This Is NOT
+
+- **Not a model downgrade**: Anthropic versions models deliberately and documents changes. Day-to-day variance happens within the same model version.
+- **Not a bug to report**: This behavior is expected and documented in LLM literature. It is inherent to probabilistic inference.
+- **Not permanent**: The next session will likely behave differently. A "bad" run does not indicate a lasting change.
+- **Not context window degradation**: That is a within-session phenomenon caused by token accumulation. This is between-session variance on fresh starts.
+
+> The Aug-Sep 2025 incident ([see Resolved Issues above](#model-quality-degradation-aug-sep-2025)) was the exception: Anthropic confirmed actual infrastructure bugs causing systematic degradation. True systematic degradation is rare and Anthropic investigates it. Normal session-to-session variance is something else.
+
+### Mitigation Strategies
+
+**Constrain the prompt**: More specific prompts reduce the output space and make variance less noticeable. "Write a function that does X, Y, Z, returns type T, handles edge case E" produces more consistent outputs than "write me something to handle X."
+
+**Fresh context before important work**: Run `/clear` before a high-stakes task. Accumulated session noise from earlier exploratory work can skew subsequent outputs even within the same session.
+
+**Reformulate and retry**: If an output seems off compared to your expectations, try the same request with different framing. A second formulation often routes through different expert paths and produces a better result.
+
+**Compare against a known-good prompt**: If you have a prompt from a previous session that produced excellent output, use it as a reference. If today's version of that prompt produces visibly worse output consistently, that warrants closer investigation (and potentially a GitHub issue if reproducible).
+
+**Calibrate expectations by task type**: Deterministic tasks (regex, simple transforms, well-defined algorithms) show less variance than creative or judgment-heavy tasks. Use Claude Code for the former with high reliability; for the latter, build review steps into your workflow.
+
+---
+
 ## 📊 Issue Statistics (as of Jan 28, 2026)
 
 | Metric | Count | Source |

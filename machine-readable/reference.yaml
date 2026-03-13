@@ -106,6 +106,13 @@ deep_dive:
   rpi_phase3_implement: "guide/workflows/rpi.md:237"  # Step-gate pattern + failure protocol
   rpi_slash_commands: "guide/workflows/rpi.md:281"  # /rpi:research /rpi:plan /rpi:implement templates
   rpi_vs_other_workflows: "guide/workflows/rpi.md:391"  # Comparison table: RPI vs dual-instance vs spec-first
+  # Changelog Fragments Workflow
+  changelog_fragments_workflow: "guide/workflows/changelog-fragments.md"  # Per-PR YAML fragments, 3-layer enforcement
+  changelog_fragments_claude_rule: "guide/workflows/changelog-fragments.md:26"  # CLAUDE.md rule for autonomous fragment creation
+  changelog_fragments_hook: "guide/workflows/changelog-fragments.md:88"  # UserPromptSubmit 3-tier hook (enforcement/discovery/contextual)
+  changelog_fragments_ci: "guide/workflows/changelog-fragments.md:169"  # Independent CI migration check job
+  # Smart-Suggest Hook
+  smart_suggest_hook: "examples/hooks/bash/smart-suggest.sh"  # UserPromptSubmit behavioral coach, 3-tier priority, ROI logging
   # Template Installation
   install_templates_script: "scripts/install-templates.sh"
   # Session management

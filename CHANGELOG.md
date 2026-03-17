@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+- **Fix dead link** (`guide/ultimate-guide.md` §3.5): Packmind anchor `../ecosystem/third-party-tools.md#packmind` corrected to `ecosystem/third-party-tools.md#packmind` (wrong `../` prefix was resolving outside `guide/`).
+
+- **Cheatsheet + reference.yaml maintenance**: date updated February → March 2026 in `guide/cheatsheet.md`; "Command not found" fix updated to use native installer (`curl | sh`); `machine-readable/reference.yaml` `updated` field bumped to 2026-03-17.
+
 - **Whitepapers v2 — Reviewer corrections** (6 relecteurs: Edouard, Mat, Nicolas, Marc, Anthony, Emmanuel): 8-phase correction plan applied across 10 whitepapers (WP00–WP10) FR+EN.
   - **Phase 1 — Factual errors**: npm "deprecated" → "not recommended" (WP00), native installer added as primary install method (WP00 EN), context window 200K vs 1M clarified (WP00 FR+EN), Claude Max ratio corrected to range 1.5-3% FR / 1-1.6% EN (WP10), sub-agents vs agent teams difference correctly stated as P2P messaging + coordination tools, not context isolation (WP08 EN)
   - **Phase 2 — Accents + articles + typos**: ~200+ accent corrections across WP08 FR (977 lines); anglicisms corrected in WP02 FR (on-demand, per-project, Memories, Feature opt-in); table row reformulated in WP00 FR; accents restored in WP02 FR (~10 passages)

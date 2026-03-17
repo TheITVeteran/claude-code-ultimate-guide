@@ -6116,7 +6116,7 @@ The default instinct with AI tools is caution — reviewing every output, second
 
 Profile-Based Module Assembly solves the per-developer consistency problem. It still requires your team to maintain the modules manually and run the assembler. At 50+ developers across 30+ repositories, even that becomes friction.
 
-Tools like [Packmind](../ecosystem/third-party-tools.md#packmind) take the same principle further: define standards once in a central playbook, and distribute them automatically as `CLAUDE.md` files, slash commands, and skills — across repositories and across AI tools (Claude Code, Cursor, Copilot, Windsurf). The playbook can also ingest knowledge from PR review comments, Slack discussions, and incident reports to keep standards current without manual maintenance.
+Tools like [Packmind](ecosystem/third-party-tools.md#packmind) take the same principle further: define standards once in a central playbook, and distribute them automatically as `CLAUDE.md` files, slash commands, and skills — across repositories and across AI tools (Claude Code, Cursor, Copilot, Windsurf). The playbook can also ingest knowledge from PR review comments, Slack discussions, and incident reports to keep standards current without manual maintenance.
 
 > **When to consider this**: Teams of 10+ developers, 5+ repositories, using more than one AI coding agent.
 
@@ -9131,6 +9131,32 @@ Hooks communicate results through exit codes and optional JSON on stdout. Choose
 | `2` | Blocking error | Prevent operation (for blocking events), stderr fed to Claude |
 | Other | Non-blocking error | Stderr shown in verbose mode (`Ctrl+O`), execution continues |
 
+### Silent Success Pattern
+
+A key principle for keeping the agent's context clean: **hooks should be silent on success and verbose on failure only.**
+
+```bash
+#!/bin/bash
+# .claude/hooks/build-check.sh — Silent Success pattern
+# On success: completely silent (nothing enters agent context)
+# On failure: surface errors + exit 2 to re-engage agent
+
+OUTPUT=$(bun run build 2>&1)
+EXIT_CODE=$?
+
+if [[ $EXIT_CODE -eq 0 ]]; then
+    exit 0  # Silent — no output, no context noise
+fi
+
+# Failure: send errors to agent for correction
+echo "$OUTPUT" >&2
+exit 2
+```
+
+This asymmetry (silence on success, signal on failure) prevents successful build logs, test output, and lint reports from accumulating as "context noise" in long sessions. The agent only sees what requires action.
+
+> Source: Pattern formalized by [HumanLayer — Harness Engineering for Coding Agents](https://www.humanlayer.dev/blog/skill-issue-harness-engineering-for-coding-agents) (March 2026). Also validated by RTK's design philosophy: suppress successful command output, surface errors only.
+
 ## 7.3 Hook Templates
 
 ### Template 1: PreToolUse (Security Blocker)
@@ -12088,6 +12114,10 @@ Claude Code v4 introduced **MCP Tool Search**: instead of loading all MCP tool d
 Model accuracy on tool-selection tasks (measured on Opus 4): 49% → 74% (+25 points) when switching from full preload to lazy-loading. Auto-enables when MCP tools would consume >10% of the context window.
 
 **Practical implication**: you can now connect dozens of MCP servers without the "too many tools" accuracy penalty. The advice to keep global config minimal still applies for unrelated tools, but MCP Tool Search changes the calculus for large project-specific sets.
+
+**CLI vs MCP — when a shell command beats a server**: Familiar CLI tools (git, grep, jq, curl) are already deeply embedded in Claude's training data. A few usage examples in CLAUDE.md are often more effective than an equivalent MCP server, because the model already knows the tool's behavior, flags, and output format. An MCP server adds tool schema overhead and introduces an unfamiliar interface. Default to CLIs for standard tools; use MCP servers for proprietary systems or APIs the model has no training context for.
+
+> Source: [HumanLayer — Harness Engineering for Coding Agents](https://www.humanlayer.dev/blog/skill-issue-harness-engineering-for-coding-agents) (March 2026)
 
 ### CLI-Based MCP Configuration
 

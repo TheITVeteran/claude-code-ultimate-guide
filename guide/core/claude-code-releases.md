@@ -10,13 +10,13 @@ tags: [reference, release]
 > **Full details**: [github.com/anthropics/claude-code/CHANGELOG.md](https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md)
 > **Machine-readable**: [claude-code-releases.yaml](../machine-readable/claude-code-releases.yaml)
 
-**Latest**: v2.1.78 | **Updated**: 2026-03-18
+**Latest**: v2.1.79 | **Updated**: 2026-03-19
 
 ---
 
 ## Quick Jump
 
-- [2.1.x Series (January-March 2026)](#21x-series-january-march-2026) — Worktree isolation, background agents, ConfigChange hook, Fast mode Opus 4.6, 1M context, claude.ai MCP connectors, remote-control, auto-memory, /copy command, HTTP hooks, worktree config sharing, ultrathink re-introduced, InstructionsLoaded hook, 4 security fixes, Agent model override restored, 12x SDK token cost reduction, /context actionable suggestions, modelOverrides setting, 1M context Opus 4.6 default for Max/Team/Enterprise, MCP elicitation, PostCompact hook, /effort command, Opus 4.6 64k/128k output tokens, allowRead sandbox setting, /branch command, StopFailure hook, streaming line-by-line
+- [2.1.x Series (January-March 2026)](#21x-series-january-march-2026) — Worktree isolation, background agents, ConfigChange hook, Fast mode Opus 4.6, 1M context, claude.ai MCP connectors, remote-control, auto-memory, /copy command, HTTP hooks, worktree config sharing, ultrathink re-introduced, InstructionsLoaded hook, 4 security fixes, Agent model override restored, 12x SDK token cost reduction, /context actionable suggestions, modelOverrides setting, 1M context Opus 4.6 default for Max/Team/Enterprise, MCP elicitation, PostCompact hook, /effort command, Opus 4.6 64k/128k output tokens, allowRead sandbox setting, /branch command, StopFailure hook, streaming line-by-line, --console auth flag, SessionEnd fix, enterprise retry fix
 - [2.0.x Series (Nov 2025 - Jan 2026)](#20x-series-november-2025---january-2026) — Opus 4.5, Claude in Chrome, Background agents
 - [Breaking Changes Summary](#breaking-changes-summary)
 - [Milestone Features](#milestone-features)
@@ -24,6 +24,24 @@ tags: [reference, release]
 ---
 
 ## 2.1.x Series (January-March 2026)
+
+### v2.1.79 (2026-03-19)
+
+- **New**: `--console` flag to `claude auth login` for Anthropic Console (API billing) authentication
+- **New**: "Show turn duration" toggle added to the `/config` menu
+- **Fixed**: `claude -p` hanging when spawned as a subprocess without explicit stdin (e.g. Python `subprocess.run`)
+- **Fixed**: Ctrl+C not working in `-p` (print) mode
+- **Fixed**: `/btw` returning the main agent's output instead of answering the side question when triggered during streaming
+- **Fixed**: Voice mode not activating correctly on startup when `voiceEnabled: true` is set
+- **Fixed**: Enterprise users unable to retry on rate limit (429) errors
+- **Fixed**: `SessionEnd` hooks not firing when using interactive `/resume` to switch sessions
+- **Fixed**: Custom status line showing nothing when workspace trust is blocking it
+- **Fixed**: `CLAUDE_CODE_DISABLE_TERMINAL_TITLE` not preventing terminal title from being set on startup
+- **Performance**: Improved startup memory usage by ~18MB across all scenarios
+- **Performance**: Non-streaming API fallback now has a 2-minute per-attempt timeout (prevents indefinite hangs)
+- **VSCode**: Added `/remote-control` to bridge session to claude.ai/code for browser/phone continuation
+- **VSCode**: Session tabs now get AI-generated titles based on first message
+- **VSCode**: Fixed thinking pill showing "Thinking" instead of "Thought for Ns" after response completes
 
 ### v2.1.78 (2026-03-18)
 

@@ -3,8 +3,8 @@
 # Purpose: Track Claude Code product releases for documentation sync
 # Maintained: Manual updates when new releases are announced
 
-latest: "2.1.78"
-updated: "2026-03-18"
+latest: "2.1.79"
+updated: "2026-03-19"
 
 # ════════════════════════════════════════════════════════════════
 # RELEASES (newest first, condensed highlights only)
@@ -14,6 +14,16 @@ releases:
   # ─────────────────────────────────────────────────────────────
   # 2.1.x Series (January-March 2026)
   # ─────────────────────────────────────────────────────────────
+
+  - version: "2.1.79"
+    date: "2026-03-19"
+    highlights:
+      - "--console flag for claude auth login (Anthropic Console / API billing authentication)"
+      - "Show turn duration toggle added to /config menu"
+      - "Fixed claude -p hanging when spawned as subprocess without explicit stdin"
+      - "Fixed enterprise users unable to retry on rate limit (429) errors"
+      - "Fixed SessionEnd hooks not firing when using interactive /resume to switch sessions"
+      - "Improved startup memory usage by ~18MB; non-streaming API fallback now has 2-minute timeout"
 
   - version: "2.1.78"
     date: "2026-03-18"

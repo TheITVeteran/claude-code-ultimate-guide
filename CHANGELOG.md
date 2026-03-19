@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+- **Claude Code releases tracking updated to v2.1.79** (`machine-readable/claude-code-releases.yaml`, `guide/core/claude-code-releases.md`): `--console` flag for `claude auth login` (API billing auth), Show turn duration toggle in `/config`, VSCode `/remote-control` command + AI-generated session tab titles, fixed `claude -p` hanging without explicit stdin, enterprise 429 retry fix, SessionEnd hooks on `/resume` session switch, ~18MB startup memory improvement.
+
+- **Resource Evaluation — Multi-Session Management Landscape** (`docs/resource-evaluations/082-multi-session-management-landscape.md`): Score 4/5. Landscape overview of 13 tools across 4 categories for managing multiple Claude Code sessions across multiple projects. Monitoring dashboards: ccm (212 stars, TUI + mobile WebUI), sniffly (1 170 stars, analytics), claude-code-dashboard (token/cost per session). Remote access: vibetunnel (4 276 stars), cc-hub (color themes + file diffs). Orchestrators: claudio (22 stars, isolated worktrees + 14 color themes + planning modes), multi-agent-shogun (1 082 stars, tmux fan-out hierarchy). Sound/notifications: no packaged per-project audio solution — DIY via `settings.local.json` + `afplay` hook per project. Recommends integrating a "Multi-Session Management" section in the guide's third-party tools coverage.
+
 - **Resource Evaluation — obra/Superpowers** (`docs/resource-evaluations/obra-superpowers-evaluation.md`): Score 5/5. Full software development methodology suite (95k+ stars, 7.5k forks, verified via GitHub API). 7 context-aware skills: brainstorm-first spec gate, implementation planning, subagent-driven development with two-stage review, mandatory TDD enforcement, code review, git worktrees, branch lifecycle. Available on official Claude Code plugin marketplace. Integrated in 4 locations: Plugin Ecosystem section in `third-party-tools.md` (alongside gstack), obra row upgrade in `ultimate-guide.md` skills.sh table, cross-reference in `tdd-with-claude.md`, cross-reference in `spec-first.md`.
 
 ## [3.37.1] - 2026-03-18

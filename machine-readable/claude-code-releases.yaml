@@ -3,8 +3,8 @@
 # Purpose: Track Claude Code product releases for documentation sync
 # Maintained: Manual updates when new releases are announced
 
-latest: "2.1.87"
-updated: "2026-03-30"
+latest: "2.1.88"
+updated: "2026-03-31"
 
 # ════════════════════════════════════════════════════════════════
 # RELEASES (newest first, condensed highlights only)
@@ -14,6 +14,16 @@ releases:
   # ─────────────────────────────────────────────────────────────
   # 2.1.x Series (January-March 2026)
   # ─────────────────────────────────────────────────────────────
+
+  - version: "2.1.88"
+    date: "2026-03-31"
+    highlights:
+      - "PermissionDenied hook — fires after auto mode classifier denials; return {retry: true} to let the model retry"
+      - "Named subagents now appear in @ mention typeahead suggestions"
+      - "Auto mode denied commands show a notification and appear in /permissions Recent tab"
+      - "Massive bugfix batch: CRLF doubling on Windows, StructuredOutput cache bug (50% failure rate), memory leaks, crashes on large files, voice mode fixes, hooks if condition filtering for compound commands"
+    breaking:
+      - "Thinking summaries disabled by default in interactive sessions — add showThinkingSummaries: true to settings.json to restore"
 
   - version: "2.1.87"
     date: "2026-03-30"

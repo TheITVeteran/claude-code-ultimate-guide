@@ -6,6 +6,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+### Documentation
+
+- **CC release v2.1.88**: Updated Claude Code releases tracking to v2.1.88
+  - PermissionDenied hook for auto mode classifier denials (return `{retry: true}` to retry)
+  - Named subagents in `@` mention typeahead suggestions
+  - Thinking summaries now off by default (`showThinkingSummaries: true` to restore)
+  - Massive bugfix batch: CRLF on Windows, StructuredOutput cache (50% failure rate), memory leaks, crashes, voice mode, hooks `if` filtering
+
 ### Meta
 
 - **Stats sync**: Updated guide stats across all LLM-indexing files — 24,600+ lines (was 24,200+), 226 templates (was 217); `reference.yaml` date updated to 2026-03-30

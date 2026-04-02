@@ -3,8 +3,8 @@
 # Purpose: Track Claude Code product releases for documentation sync
 # Maintained: Manual updates when new releases are announced
 
-latest: "2.1.89"
-updated: "2026-04-01"
+latest: "2.1.90"
+updated: "2026-04-02"
 
 # ════════════════════════════════════════════════════════════════
 # RELEASES (newest first, condensed highlights only)
@@ -14,6 +14,15 @@ releases:
   # ─────────────────────────────────────────────────────────────
   # 2.1.x Series (January-April 2026)
   # ─────────────────────────────────────────────────────────────
+
+  - version: "2.1.90"
+    date: "2026-04-02"
+    highlights:
+      - "⭐ /powerup command — interactive animated lessons teaching Claude Code features with live demos"
+      - "Fixed infinite loop crashing sessions when rate-limit options dialog repeatedly auto-opened"
+      - "Fixed --resume causing full prompt-cache miss for users with deferred tools (regression since v2.1.69)"
+      - "Hardened PowerShell tool permissions: trailing & bypass, -ErrorAction Break debugger hang, archive TOCTOU, parse-fail deny degradation"
+      - "Performance: SSE transport large frame handling now linear time (was quadratic); per-turn JSON.stringify eliminated"
 
   - version: "2.1.89"
     date: "2026-04-01"

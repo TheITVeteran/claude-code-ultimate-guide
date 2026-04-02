@@ -6,6 +6,17 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+## [3.38.1] - 2026-04-02
+
+### Documentation
+
+- **Claude Code Releases**: Updated tracking to v2.1.90
+  - /powerup command — interactive animated lessons with live demos
+  - Fixed session-crashing infinite loop in rate-limit dialog
+  - Fixed --resume prompt-cache miss regression (since v2.1.69)
+  - PowerShell tool hardened: trailing & bypass, debugger hang, TOCTOU
+  - SSE transport linear-time for large frames; per-turn JSON.stringify eliminated
+
 ### Changed
 
 - **BMAD selection criterion corrected**: Replaced "Enterprise 10+ teams" with "High-complexity projects with stable requirements" across all docs. The real driver is project complexity + requirement stability, not headcount. BMAD is usable solo or at any team size — and becomes a liability when specs change mid-project. Updated `guide/core/methodologies.md`, `guide/ultimate-guide.md`, `whitepapers/fr/07-guide-reference.qmd`, `whitepapers/en/07-reference-guide.qmd`, `landing/src/pages/methodologies/index.astro`, `landing/src/data/methodology-quiz.ts`. Added explicit "when to avoid: evolving requirements" warning throughout.

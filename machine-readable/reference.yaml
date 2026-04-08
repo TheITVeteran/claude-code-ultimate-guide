@@ -3,8 +3,8 @@
 # Source: guide/ultimate-guide.md
 # Purpose: Condensed index for LLMs to quickly answer user questions about Claude Code
 
-version: "3.38.8"
-updated: "2026-04-02"
+version: "3.38.9"
+updated: "2026-04-08"
 
 # ════════════════════════════════════════════════════════════════
 # DEEP DIVE - Line numbers in guide/ultimate-guide.md
@@ -368,6 +368,13 @@ deep_dive:
   third_party_claude_chic: "https://pypi.org/project/claudechic/"
   third_party_toad: "https://github.com/batrachianai/toad"
   third_party_conductor: "https://docs.conductor.build"
+  # Project Context Bootstrapping (Added 2026-04-08)
+  third_party_tools_context_bootstrap: "guide/ecosystem/third-party-tools.md:427"
+  third_party_codesight: "https://github.com/Houseofmvps/codesight"
+  third_party_codesight_guide: "guide/ecosystem/third-party-tools.md:433"
+  third_party_codesight_purpose: "Zero-dep CLI: AST-based codebase context map (routes, schema, hot files) + wiki articles + 11 MCP tools. 7-12x token savings on base scan."
+  third_party_codesight_when_useful: "TypeScript projects with recognized framework (Express/Hono/tRPC/Fastify/NestJS) and ORM. Useless on Rust. Use --wiki + MCP on large monorepos (>1500 files)."
+  third_party_codesight_limitations: "AST precision TS-only; Next.js App Router = 0 routes; CF Workers raw HTTP = 0 routes; Rust = near-empty output; --init overwrites CLAUDE.md"
   # Configuration Management & Backup (Added 2026-02-02)
   config_management_guide: "guide/ultimate-guide.md:4217"  # Section 3.1 Memory Files
   config_hierarchy: "guide/ultimate-guide.md:4336"  # Global → Project → Local precedence

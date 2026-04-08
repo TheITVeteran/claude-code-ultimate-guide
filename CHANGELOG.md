@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [3.38.9] - 2026-04-08
+
+### Added
+
+- **codesight entry** (`guide/ecosystem/third-party-tools.md`): New "Project Context Bootstrapping" section covering codesight — a zero-dependency CLI that compiles structured codebase context (routes, schema, deps, blast radius) via AST analysis and exposes it as a wiki knowledge base or 11 MCP tools. Includes command reference, MCP configuration, wiki token comparison table, CI integration snippet, and explicit caveats (self-reported benchmarks, TypeScript-only AST, `--init` CLAUDE.md overwrite risk). Score 3/5 — category gap documented, tool maturity to be reassessed at 90 days. TOC and description frontmatter updated.
+
 ## [3.38.8] - 2026-04-08
 
 ### Added

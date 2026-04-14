@@ -3,8 +3,8 @@
 # Purpose: Track Claude Code product releases for documentation sync
 # Maintained: Manual updates when new releases are announced
 
-latest: "2.1.101"
-updated: "2026-04-10"
+latest: "2.1.107"
+updated: "2026-04-14"
 
 # ════════════════════════════════════════════════════════════════
 # RELEASES (newest first, condensed highlights only)
@@ -14,6 +14,19 @@ releases:
   # ─────────────────────────────────────────────────────────────
   # 2.1.x Series (January-April 2026)
   # ─────────────────────────────────────────────────────────────
+
+  - version: "2.1.107"
+    date: "2026-04-14"
+    highlights:
+      - "Show thinking hints sooner during long operations"
+
+  - version: "2.1.105"
+    date: "2026-04-13"
+    highlights:
+      - "⭐ PreCompact hook support — hooks can block compaction by exiting with code 2 or returning {decision:block}"
+      - "EnterWorktree tool gains path parameter to switch into an existing worktree; /proactive alias for /loop"
+      - "Background monitor support for plugins via top-level monitors manifest key; /doctor status icons with f-to-fix"
+      - "WebFetch strips <style>/<script> contents; stalled API streams abort after 5 min then retry non-streaming; skill descriptions cap raised to 1,536 chars"
 
   - version: "2.1.101"
     date: "2026-04-10"

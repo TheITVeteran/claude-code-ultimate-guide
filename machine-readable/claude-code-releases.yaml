@@ -3,8 +3,8 @@
 # Purpose: Track Claude Code product releases for documentation sync
 # Maintained: Manual updates when new releases are announced
 
-latest: "2.1.107"
-updated: "2026-04-14"
+latest: "2.1.109"
+updated: "2026-04-15"
 
 # ════════════════════════════════════════════════════════════════
 # RELEASES (newest first, condensed highlights only)
@@ -14,6 +14,19 @@ releases:
   # ─────────────────────────────────────────────────────────────
   # 2.1.x Series (January-April 2026)
   # ─────────────────────────────────────────────────────────────
+
+  - version: "2.1.109"
+    date: "2026-04-15"
+    highlights:
+      - "Improved extended-thinking indicator with a rotating progress hint"
+
+  - version: "2.1.108"
+    date: "2026-04-15"
+    highlights:
+      - "⭐ ENABLE_PROMPT_CACHING_1H env var — opt into 1-hour prompt cache TTL on API key, Bedrock, Vertex, Foundry; FORCE_PROMPT_CACHING_5M to force 5-minute TTL"
+      - "⭐ /recap command — provides context when returning to a session; configurable in /config; force with CLAUDE_CODE_ENABLE_AWAY_SUMMARY if telemetry disabled"
+      - "Built-in slash commands (/init, /review, /security-review) now discoverable and invokable via the Skill tool"
+      - "/undo alias for /rewind; /resume defaults to current directory (Ctrl+A for all); improved model-switch warning mid-conversation"
 
   - version: "2.1.107"
     date: "2026-04-14"

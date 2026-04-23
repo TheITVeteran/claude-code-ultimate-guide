@@ -907,7 +907,64 @@ This section covers tools for running **multiple Claude Code instances in parall
 | [Gas Town](https://github.com/steveyegge/gastown) | Multi-agent workspace | Steve Yegge's agent-first workspace manager |
 | [multiclaude](https://github.com/dlorenc/multiclaude) | Multi-agent spawner | tmux + git worktrees (383+ stars) |
 | [agent-chat](https://github.com/justinabrahms/agent-chat) | Monitoring UI | Real-time SSE monitoring for Gas Town/multiclaude |
+| [abtop](https://github.com/graykode/abtop) | Fleet TUI monitor | htop-style: tokens, context %, rate limits, ports, subagent tree (584+ stars) |
 | [Conductor](#conductor) | Desktop app | macOS parallel agents (also listed above) |
+
+---
+
+### abtop
+
+A Rust TUI that shows all active Claude Code and Codex CLI sessions in one screen — like htop, but for agent fleets.
+
+| Attribute | Details |
+|-----------|---------|
+| **Source** | [GitHub: graykode/abtop](https://github.com/graykode/abtop) |
+| **Install** | `curl --proto '=https' --tlsv1.2 -LsSf https://github.com/graykode/abtop/releases/latest/download/abtop-installer.sh \| sh` or `cargo install abtop` |
+| **Language** | Rust (ratatui) |
+| **License** | MIT |
+| **Platform** | macOS, Linux (WSL for Windows) |
+
+**Key features**:
+
+- Auto-discovery of Claude Code and Codex CLI sessions from local process/file state — no API key, no auth
+- Per-session bars: token usage, context window %, rate limit quota
+- Orphan port detection with one-key kill (`X`)
+- Subagent tree (Claude Code only)
+- tmux integration: press `Enter` to jump directly to the session pane
+- `--once` flag for snapshot output (CI-friendly)
+- `--setup` to install a rate-limit collection hook
+- 10 built-in themes including 4 colorblind-friendly variants (`high-contrast`, `protanopia`, `deuteranopia`, `tritanopia`)
+
+**Usage**:
+
+```bash
+abtop                    # Launch TUI (requires 120x40 terminal, degrades gracefully to 80x24)
+abtop --once             # Print snapshot and exit
+abtop --setup            # Install rate limit collection hook
+abtop --theme dracula    # Launch with a specific theme
+```
+
+**Recommended setup with tmux**:
+
+```bash
+tmux new -s work
+# pane 0: abtop
+# pane 1: claude (project A)
+# pane 2: claude (project B)
+# Press Enter in abtop to jump to the active agent's pane
+```
+
+**Supported features by agent**:
+
+| Feature | Claude Code | Codex CLI |
+|---------|:-----------:|:---------:|
+| Token tracking | ✅ | ✅ |
+| Context window % | ✅ | ✅ |
+| Rate limit | ✅ | ✅ |
+| Subagents | ✅ | ❌ |
+| Memory status | ✅ | ❌ |
+
+> **When to use**: running 3+ concurrent agents across projects, hitting rate limits without knowing which session is responsible, or needing to spot orphaned ports left by a previous agent run.
 
 ---
 

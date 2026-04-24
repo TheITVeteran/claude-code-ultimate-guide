@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+- **Threat Database** (security): Updated to v2.15.0 (2026-04-24). Added 5 new CVEs from OX Security MCP STDIO chain (CVE-2026-30623 LiteLLM, CVE-2026-40933 Flowise, CVE-2026-33224 Bisheng, CVE-2025-69256 Serverless Framework, CVE-2026-6494 Red Hat AAP MCP). Added attack techniques T026 (Claudy Day session hijack) and T027 (Claude Code Supply Chain Memory Poisoning). Added 9 new sources including IBM X-Force agentic AI report, Straiker 94% prompt injection study, InfoSecurity 10 in-the-wild IPI payloads. Added litellm to minimum_safe_versions.
+
 - **Known Issues** (major update): Added "Triple Harness Incident (Mar-Apr 2026)" resolved entry, covering three independent harness/prompt changes that degraded output quality: default effort high to medium (March 4, reverted April 7), thinking tokens cleared per-turn bug (March 26, fixed April 10 in v2.1.101), verbosity system prompt (April 16, reverted April 20 in v2.1.116). Source: Anthropic official postmortem and Boris Cherny HN comments (April 23, 2026). Updated Last Updated date.
 
 - **Ultrareview section** (guide): Added `/ultrareview <PR#>` syntax, clarified diff-only scope (not full codebase), added Scope row to Ultraplan vs Ultrareview comparison table
